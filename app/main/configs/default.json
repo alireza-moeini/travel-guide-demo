@@ -1,0 +1,38 @@
+{
+  "API": {
+    "BASE_URL": "/api"
+  },
+  "API_PROVIDER": {
+    "CRED": {
+      "KEY": "napzGXQV5DdVkgebVLATEnGzXH1Q62pH",
+      "SECRET": "0cSNyDz9vatAwtLR",
+      "API_KEY": "0165f6eafd01406e90ac5333954159b5"
+    },
+    "ENDPOINTS": {
+      "AUTH": "https://test.api.amadeus.com/v1/security/oauth2/token",
+      "HOTEL": {
+        "SEARCH": "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city",
+        "OFFER": "https://test.api.amadeus.com/v3/shopping/hotel-offers",
+        "RATING": "https://test.api.amadeus.com/v2/e-reputation/hotel-sentiments"
+      },
+      "FLIGHT": {
+        "OFFER": "https://test.api.amadeus.com/v2/shopping/flight-offers"
+      },
+      "GEO": {
+        "REVERSE": "https://api.geoapify.com/v1/batch/geocode/reverse"
+      }
+    }
+  },
+  "DATABASE": {
+    "URI": "mongodb://root:ZXhhbXBsZQ==@mongo:27017",
+    "NAME": "travel_info",
+    "CONNECTION_ARGS": {
+        "COMPRESSORS": "zlib"
+    },
+    "COLLECTIONS": {
+      "HOTEL": "hotels",
+      "FLIGHT": "flights",
+      "RATING": "ratings"
+    }
+  }
+}

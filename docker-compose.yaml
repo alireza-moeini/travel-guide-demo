@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build: '.'
+    volumes:
+      - "./app:/app/app"
+      - "./commands:/app/commands"
+      - "./app.py:/app/app.py"
+      - "./swagger.yml:/app/swagger.yml"
+    networks:
+      - app-network
+      - db-network
+    ports:
+      - '5000:5000'
+    depends_on:
+      - redis
+  mongo:
+    image: mongo:latest
+    restart: always
+    hostname: mongo
+    networks:
+      - app-network
+    ports:
+      - "27017:27017"
+    volumes:
+      - db_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ZXhhbXBsZQ==
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    networks:
+      - app-network
+    volumes:
+      - cache:/data
+    ports:
+      - '6379:6379'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+
+networks:
+  app-network:
+  db-network:
+
+volumes:
+  cache:
+    driver: local
+  db_data:
